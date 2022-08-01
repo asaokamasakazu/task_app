@@ -11,6 +11,24 @@
   </head>
 
   <body>
+    <h1>Ruby on Rails スケジュール管理アプリ</h1>
+
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
+
+  <footer>
+    <p>
+      <% if @schedule_count %>
+        <%= "現在の日時 : #{@time.to_s(:datetime_jp)}　　スケジュール合計 : #{@schedule_count}個"%>
+      <% else %>
+        <%= "現在の日時 : #{@time.to_s(:datetime_jp)}"%>
+      <% end %>
+    </p>
+  </footer>
 </html>
