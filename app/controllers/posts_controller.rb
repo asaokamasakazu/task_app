@@ -45,13 +45,12 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.new(
-      title: params[:title],
-      start_day: params[:start_day],
-      finish_day: params[:finish_day],
-      all_day: params[:all_day],
-      memo: params[:memo]
-    )
+    @post = Post.find_by(id: params[:id])
+    @post.title = params[:title]
+    @post.start_day = params[:start_day]
+    @post.finish_day = params[:finish_day]
+    @post.all_day = params[:all_day]
+    @post.memo = params[:memo]
     if @post.start_day > @post.finish_day
       if @post.title == ""
         @error_message = ["タイトルは必須です。", "終了日の日付が開始日の日付よりも後になるように設定してください。"]
